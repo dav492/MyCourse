@@ -28,19 +28,21 @@ namespace MyCourse
             {
                 app.UseDeveloperExceptionPage();
 
-                //Aggiorno un file per notificare al BrowserSync che deve aggiornare la pagina
-                lifetime.ApplicationStarted.Register(() => {
+                //Aggiorniamo un file per notificare al BrowserSync che deve aggiornare la pagina
+                lifetime.ApplicationStarted.Register(() =>
+                {
                     string filePath = Path.Combine(env.ContentRootPath, "bin/reload.txt");
                     File.WriteAllText(filePath, DateTime.Now.ToString());
                 });
             }
             app.UseStaticFiles();
-
+            
             //app.UseMvcWithDefaultRoute();
-            app.UseMvc(routeBuilder =>
+            app.UseMvc(routeBuilder => 
             {
-                routeBuilder.MapRoute("default","{controller=Home}/{action=Index}/{id?}");
-            }); 
+                // Esempio di percorso conforme al template route: /courses/detail/5
+                routeBuilder.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

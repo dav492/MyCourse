@@ -9,9 +9,9 @@ namespace MyCourse.Controllers
             return View();
         }
 
-        public IActionResult Detail(string id) 
+        public IActionResult Detail(string id)
         {
-            return View(); 
+            return View();
         }
     }
 }
